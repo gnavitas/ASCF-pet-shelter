@@ -1,0 +1,151 @@
+@import url('./main.css');
+
+/* Center container */
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Horizontally center content */
+  align-items: center; /* Vertically center content */
+}
+
+/* Main styles */
+main {
+  width: 100%; /* Adjust the width as needed */
+  padding: 20px;
+  background-color: #f0f0f0; /* Background color for the main content area */
+}
+
+/* Admins section */
+.cnt-admins {
+  display: flex;
+  flex-direction: column;
+  padding: 1% 2%;
+  background-color: #fff; /* Background color for the admins section */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  margin: auto; /* Center the admin section within its parent container */
+}
+
+/* Admins header */
+.cnt-admins .admins-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Title */
+.cnt-admins .admins-header .title-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Admin button */
+.cnt-admins .admins-header .title-text .admin-button a {
+  background-color: #5fb471; /* Button background color */
+  padding: 5px 10px;
+  color: #fff; /* Button text color */
+  border-radius: 3px;
+}
+
+.cnt-admins .admins-header .filter-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: .5% 1%;
+  border-radius: 6px;
+}
+
+/* Filter */
+.cnt-admins .admins-header .filter-box .filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.cnt-admins .admins-header .filter-box .filter .search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 70%;
+  border: 1px solid #000;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+
+.cnt-admins .admins-header .filter-box .filter .search .fa {
+  color: #000;
+  position: absolute;
+  margin-left: 2.5%;
+}
+
+.cnt-admins .admins-header .filter-box .filter .search input[type="search"] {
+  width: 100%;
+  font-size: 1em;
+  outline: none;
+  padding: 5px;
+  padding-left: 40px;
+  border: none;
+  background: none;
+  border-radius: 6px;
+}
+
+/* Sort by */
+.cnt-admins .admins-header .filter-box .filter .sort-by {
+  width: 30%;
+}
+
+.cnt-admins .admins-header .filter-box .filter .sort-by p {
+  margin-right: 10px;
+}
+
+.cnt-admins .admins-header .filter-box .filter .sort-by select {
+  width: max-content;
+  font-size: 1em;
+  outline: none;
+  padding: 5px;
+  border-radius: 6px;
+  border: 1px solid #000;
+}
+
+/* Admin item container */
+.cnt-admins .admin-item-container {
+  width: 100%;
+  margin-top: 10px;
+  overflow-x: auto; /* Add horizontal scroll if needed */
+}
+
+.cnt-admins .admin-item-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cnt-admins .admin-item-container table thead {
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+}
+
+.cnt-admins .admin-item-container table th,
+.cnt-admins .admin-item-container table td {
+  padding: 8px;
+  text-align: left;
+}
+
+.cnt-admins .admin-item-container table tbody tr:nth-child(odd) {
+  background-color: #f3e5e5;
+}
+
+.cnt-admins .admin-item-container table tbody tr:nth-child(even) {
+  background-color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  main {
+    width: 90%; /* Adjust for smaller screens */
+  }
+}

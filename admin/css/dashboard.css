@@ -1,0 +1,276 @@
+
+.body{
+    background-color:white;
+    align-items: center;
+}
+
+.container {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+
+}
+
+/* Dashboard header styling */
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.dashboard-header span {
+    color: maroon;
+    font-size: 1.5rem;
+}
+
+/* Card styling */
+.card-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card-box {
+    width: 200px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-title p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.card-icon {
+    font-size: 2rem;
+    color: maroon;
+}
+
+.card-total {
+    text-align: center;
+}
+
+.card-total h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Line Chart Box */
+.line-chart-box {
+    width: 60%;
+    margin-right: 20px;
+}
+
+/* Line Chart */
+.line-chart {
+    width: 100%;
+
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 20px;
+}
+/* Recent Users Header */
+.recent-users h3 {
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+.recent-users table {
+    width: 100%;
+ 
+    border-collapse: collapse;
+}
+
+/* Table Head */
+.recent-users th {
+    padding: 10px;
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+}
+
+/* Table Body */
+.recent-users td {
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Avatar */
+.avatar {
+    width: 100px;
+    color: black;
+}
+
+.avatar img {
+    max-width: 100%;
+    border-radius: 50%;
+    color: black;
+}
+
+
+
+
+.today-sched-box{
+    /* background-color: #fff; */
+    width: 100%;
+    height: 48%;
+    overflow: hidden;
+    /* padding:  1% 0 1% 2%; */
+    /* border-radius: 12px; */
+ }
+ 
+ .today-sched-box .sched-today{
+    margin: auto;
+    margin-top: 5px;
+    height: 500px;
+
+ }
+ 
+ .today-sched-box .sched-today table{
+    border-collapse: collapse;
+
+ }
+ 
+ 
+ .today-sched-box .sched-today table thead{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.516); 
+    border-top: 1px solid rgba(0, 0, 0, 0.516);  
+ }
+ 
+ .today-sched-box .sched-today table tr th{
+    padding: 5px;
+    text-transform: capitalize;
+    color: #000000;
+    /* background-color: var(--primary-color); */
+    font-weight: 500;
+    text-align: left;
+    /* border: 1px solid black; */
+    font-size: .9em;
+ }
+ 
+ .today-sched-box .sched-today table tr .avatar{
+    text-align: center;
+    width: 10%;
+ }
+ 
+ .today-sched-box .sched-today table tr .avatar .user-avatar{
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: auto;
+    background-color: maroon;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ 
+ .today-sched-box .sched-today table tr .avatar .user-avatar p{
+    color: white;
+    font-size: .5em;
+    text-transform: uppercase;
+ }
+ 
+ 
+ .today-sched-box .sched-today table tr .avatar .user-avatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* height: 100%; */
+ }
+ 
+ .today-sched-box .sched-today table tr td{
+    /* text-align: ; */
+    padding: 5px;
+    /* background-color: #fff; */
+    border: 1px solid rgba(0, 0, 0, 0.153);
+    font-size: .5em;
+    text-transform: capitalize;
+    overflow: hidden;
+ }
+ 
+ .today-sched-box .sched-today table tbody tr:nth-child(odd){
+    /* border: 1px solid rgba(0, 0, 0, 0.315); */
+    background-color: rgb(243, 229, 229);
+ }
+ 
+ 
+ .today-sched-box .sched-today table tbody tr:nth-child(even){
+    /* border: 1px solid rgba(0, 0, 0, 0.315); */
+    background-color: #fff;
+ }
+ 
+ 
+ .today-sched-box .sched-today table tr td:first-child{
+    background-color: var(--primary-color);
+    color: black;  
+    width: 16%;
+ }
+ 
+ .today-sched-box .sched-today table tr .today-sched-action button{
+    border: none;
+    padding: 3px 10px;
+    color: black;  
+    background-color: rgb(83, 110, 173);
+    border-radius: 3px;
+    font-size: .9em;
+ }
+ 
+ .today-sched-box .sched-today table tr th:last-child{
+    text-align: center;
+ }
+ 
+ .today-sched-box .sched-today table tr td:last-child{
+    text-align: center;
+ }
+ 
+ .today-sched-box .sched-today table tr .adopt-log-action button .fas{
+    color: black;
+    /* width: 10px; */
+ }
+ 
+ 
+ .today-sched-box .sched-today input{
+    box-sizing: border-box;
+    padding: 3px 10px;
+    font-size: 1em;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.418);
+    width: 170px;
+ }
+ 
+ .line-chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Adjust the width as needed */
+
+}
+
+.pie-chart-box canvas,
+.donut-chart-box canvas {
+    width:50%!important; /* Adjust width as needed */
+    height: 50% !important; /* Adjust height as needed */
+}

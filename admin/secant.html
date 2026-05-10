@@ -1,0 +1,189 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secant Method</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="number"] {
+            width: 100px;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+
+        canvas#chart {
+            max-width: 600px;
+            width: 100%;
+            height: 300px; /* Fixed height */
+        }
+
+        #iteration-table-container {
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Secant Method</h2>
+        <label for="initial1">Initial guess x0:</label>
+        <input type="number" id="initial1" step="any" value="0">
+        <label for="initial2">Initial guess x1:</label>
+        <input type="number" id="initial2" step="any" value="1">
+        <label for="tolerance">Tolerance:</label>
+        <input type="number" id="tolerance" step="any" value="0.0001">
+        <button onclick="calculateRoot()">Calculate Root</button>
+        <div id="output"></div>
+    </div>
+
+    <canvas id="chart"></canvas>
+
+    <div id="iteration-table-container">
+        <table id="iteration-table"></table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function calculateRoot() {
+            var x0 = parseFloat(document.getElementById("initial1").value);
+            var x1 = parseFloat(document.getElementById("initial2").value);
+            var tol = parseFloat(document.getElementById("tolerance").value);
+
+            var maxIterations = 1000;
+            var fx0, fx1, x2, fx2, error;
+            var iterationsData = [];
+
+            for (var i = 0; i < maxIterations; i++) {
+                fx0 = f(x0);
+                fx1 = f(x1);
+                x2 = x1 - (fx1 * (x1 - x0)) / (fx1 - fx0);
+                fx2 = f(x2);
+
+                iterationsData.push({ iteration: i + 1, x0: x0.toFixed(6), x1: x1.toFixed(6), x2: x2.toFixed(6), f_x2: fx2.toFixed(6) });
+
+                error = Math.abs(x2 - x1);
+                if (error < tol || Math.abs(fx2) < tol) {
+                    document.getElementById("output").innerHTML = "Root: " + x2.toFixed(6) + "<br>Iterations: " + (i + 1);
+                    break;
+                }
+
+                x0 = x1;
+                x1 = x2;
+            }
+
+            displayIterations(iterationsData);
+            plotGraph(iterationsData);
+        }
+
+        function displayIterations(iterationsData) {
+            var table = "<tr><th>Iteration</th><th>x0</th><th>x1</th><th>x2</th><th>f(x2)</th></tr>";
+            iterationsData.forEach(function (iteration) {
+                table += "<tr>";
+                table += "<td>" + iteration.iteration + "</td>";
+                table += "<td>" + iteration.x0 + "</td>";
+                table += "<td>" + iteration.x1 + "</td>";
+                table += "<td>" + iteration.x2 + "</td>";
+                table += "<td>" + iteration.f_x2 + "</td>";
+                table += "</tr>";
+            });
+            document.getElementById("iteration-table").innerHTML = table;
+        }
+
+        function plotGraph(iterationsData) {
+            var xValues = [];
+            var fValues = [];
+
+            iterationsData.forEach(function (iteration) {
+                xValues.push(parseFloat(iteration.x2));
+                fValues.push(parseFloat(iteration.f_x2));
+            });
+
+            var ctx = document.getElementById('chart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'f(x)',
+                        data: fValues,
+                        borderColor: '#007bff',
+                        backgroundColor: '#007bff',
+                        fill: false,
+                    }]
+                },
+                options: {
+                    responsive: false, // Fixed dimensions
+                    maintainAspectRatio: false, // Fixed dimensions
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom'
+                        },
+                        y: {
+                            type: 'linear',
+                            position: 'left'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Define your function here
+        function f(x) {
+            // Example function: f(x) = x^3 - 2x - 5
+            return Math.pow(x, 3) - 2 * x - 5;
+        }
+    </script>
+</body>
+</html>

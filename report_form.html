@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Abuse Report Form</title>
+    <!-- Include Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Include Leaflet Control Geocoder CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <style>
+        #map {
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Abuse Report Form</h2>
+    <form action="insert_report.php" method="post" enctype="multipart/form-data">
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        
+        <label for="type_of_report">Type of Report:</label><br>
+        <select id="type_of_report" name="type_of_report" required>
+            <option value="">Select Type</option>
+            <option value="Abused Animal">Abused Animal</option>
+            <option value="Wild Animal">Wild Animal</option>
+        </select><br>
+        
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br>
+        
+        <label for="address">Address:</label><br>
+        <input type="text" id="address" name="address" readonly required><br>
+        
+        <!-- Hidden inputs for latitude and longitude -->
+        <input type="hidden" id="latitude" name="latitude">
+        <input type="hidden" id="longitude" name="longitude">
+        
+        <label for="report_image">Report Image:</label><br>
+        <input type="file" id="report_image" name="report_image" accept="image/*"><br>
+        
+        <!-- Map div -->
+        <div id="map"></div><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Include Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Include Leaflet Control Geocoder JS -->
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script>
+        var map = L.map('map').setView([0, 0], 2); // Set initial view
+        var marker;
+        
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Add search functionality to the map
+        var geocoder = L.Control.geocoder().addTo(map);
+
+        // Add marker on click to update latitude and longitude
+        map.on('click', function(e) {
+            if(marker) {
+                map.removeLayer(marker);
+            }
+            marker = new L.marker(e.latlng).addTo(map);
+            document.getElementById('latitude').value = e.latlng.lat;
+            document.getElementById('longitude').value = e.latlng.lng;
+
+            // Reverse geocode to get address and update input field
+            geocoder.reverse(e.latlng, map.options.crs.scale(map.getZoom()), function(results) {
+                if (results.length > 0) {
+                    document.getElementById('address').value = results[0].name;
+                }
+            });
+        });
+
+        // Update address field when address is selected from map search
+        geocoder.on('markgeocode', function(e) {
+            document.getElementById('address').value = e.geocode.name;
+        });
+    </script>
+</body>
+</html>
